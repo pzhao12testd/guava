@@ -1,7 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
   <parent>
@@ -17,10 +14,10 @@
   <url>https://github.com/google/guava</url>
   <properties>
     <!-- Override this with -Dtest.include="**/SomeTest.java" on the CLI -->
+
     <test.include>%regex[.*.class]</test.include>
     <truth.version>0.35</truth.version>
     <animal.sniffer.version>1.14</animal.sniffer.version>
-    <maven-javadoc-plugin.version>3.0.0</maven-javadoc-plugin.version>
   </properties>
   <issueManagement>
     <system>GitHub Issues</system>
@@ -86,12 +83,7 @@
         </excludes>
       </testResource>
     </testResources>
-    <plugins>
-      <plugin>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>${maven-javadoc-plugin.version}</version>
-      </plugin>
-    </plugins>
+
     <pluginManagement>
       <plugins>
         <plugin>
@@ -118,7 +110,9 @@
             <execution>
               <id>attach-sources</id>
               <phase>post-integration-test</phase>
-              <goals><goal>jar</goal></goals>
+              <goals>
+                                <goal>jar</goal>
+                            </goals>
             </execution>
           </executions>
           <configuration>
@@ -150,7 +144,7 @@
         </plugin>
         <plugin>
           <artifactId>maven-javadoc-plugin</artifactId>
-          <version>${maven-javadoc-plugin.version}</version>
+          <version>3.0.0</version>
           <configuration>
             <quiet>true</quiet>
             <notimestamp>true</notimestamp>
@@ -167,7 +161,9 @@
             <execution>
               <id>attach-docs</id>
               <phase>post-integration-test</phase>
-              <goals><goal>jar</goal></goals>
+              <goals>
+                                <goal>jar</goal>
+                            </goals>
             </execution>
           </executions>
         </plugin>
@@ -204,7 +200,23 @@
         </plugin>
       </plugins>
     </pluginManagement>
-  </build>
+  <plugins>
+            <plugin>
+                <groupId>edu.illinois</groupId>
+                <artifactId>starts-maven-plugin</artifactId>
+                <version>1.3</version>
+                <executions>
+                    <execution>
+                        <id>starts</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>starts</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
   <distributionManagement>
     <site>
       <id>guava-site</id>
@@ -300,3 +312,4 @@
     </dependencies>
   </dependencyManagement>
 </project>
+
